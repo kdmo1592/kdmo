@@ -12,22 +12,22 @@
       background: #1a1a2e;
       color: #e0e0e0;
       min-height: 100vh;
-      padding: 24px 16px;
+      padding: 20px 14px 40px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.9rem;
       color: #f0c040;
       letter-spacing: 2px;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .subtitle {
       text-align: center;
-      color: #aaa;
-      margin-bottom: 32px;
-      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 28px;
+      font-size: 0.88rem;
     }
 
     .container { max-width: 860px; margin: 0 auto; }
@@ -35,62 +35,105 @@
     .card {
       background: #16213e;
       border: 1px solid #0f3460;
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 24px;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
     }
 
-    .card h2 {
-      font-size: 1.1rem;
-      color: #f0c040;
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 16px;
       border-bottom: 1px solid #0f3460;
-      padding-bottom: 8px;
+      padding-bottom: 10px;
     }
 
-    /* Sorteo inputs */
-    .sorteo-row {
+    .card-header h2 {
+      font-size: 1rem;
+      color: #f0c040;
+    }
+
+    /* Sorteo status */
+    .sorteo-status {
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #888;
+      flex-shrink: 0;
+    }
+    .status-dot.ok { background: #40c060; }
+    .status-dot.error { background: #c04040; }
+    .status-dot.loading {
+      background: #f0c040;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .btn-refresh {
+      background: transparent;
+      border: 1px solid #0f3460;
+      color: #aaa;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-refresh:hover { border-color: #f0c040; color: #f0c040; }
+
+    /* Sorteo balls display */
+    .sorteo-display {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
+      min-height: 52px;
     }
 
     .sorteo-group {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
     }
 
     .sorteo-group label {
-      font-size: 0.72rem;
-      color: #aaa;
+      font-size: 0.65rem;
+      color: #888;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
-    .ball-input {
-      width: 52px;
-      height: 52px;
+    .ball-display {
+      width: 48px; height: 48px;
       border-radius: 50%;
-      border: 2px solid #0f3460;
       background: #0f3460;
+      border: 2px solid #1a4080;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: bold;
-      text-align: center;
-      outline: none;
-      transition: border-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .ball-input:focus { border-color: #f0c040; background: #1a3060; }
+    .ball-display.comp { background: #3a1060; border-color: #8040c0; }
+    .ball-display.rein { background: #0a3040; border-color: #20a0c0; width: 40px; height: 40px; font-size: 0.95rem; }
+    .ball-display.empty { color: #444; font-size: 1.2rem; }
 
-    .ball-input.comp { background: #3a1060; border-color: #8040c0; }
-    .ball-input.comp:focus { border-color: #c080ff; }
-
-    .ball-input.rein { background: #0a3040; border-color: #20a0c0; width: 46px; height: 46px; font-size: 1rem; }
-    .ball-input.rein:focus { border-color: #40d0ff; }
+    .sorteo-date {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 10px;
+    }
 
     /* Apuestas */
     .bet-list { display: flex; flex-direction: column; gap: 10px; }
@@ -101,153 +144,120 @@
       gap: 8px;
       background: #0f1e3a;
       border: 1px solid #0f3460;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 10px 12px;
     }
 
     .bet-index {
       color: #f0c040;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: bold;
-      min-width: 28px;
+      min-width: 24px;
     }
 
-    .bet-numbers {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
+    .bet-numbers { display: flex; gap: 5px; flex-wrap: wrap; }
 
     .bet-num-input {
-      width: 44px;
-      height: 44px;
+      width: 42px; height: 42px;
       border-radius: 50%;
       border: 2px solid #1a3060;
       background: #1a2a50;
       color: #e0e0e0;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: bold;
       text-align: center;
       outline: none;
       transition: border-color 0.2s;
+      -moz-appearance: textfield;
     }
-
-    .bet-num-input:focus { border-color: #f0c040; }
+    .bet-num-input::-webkit-inner-spin-button,
+    .bet-num-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .bet-num-input:focus { border-color: #f0c040; background: #1e3060; }
 
     .btn-remove {
       margin-left: auto;
       background: transparent;
-      border: 1px solid #c04040;
-      color: #c04040;
+      border: 1px solid #602020;
+      color: #c06060;
       border-radius: 6px;
-      padding: 4px 10px;
+      padding: 4px 8px;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
+      flex-shrink: 0;
       transition: background 0.2s, color 0.2s;
     }
-
-    .btn-remove:hover { background: #c04040; color: #fff; }
+    .btn-remove:hover { background: #c04040; color: #fff; border-color: #c04040; }
 
     .btn-actions {
       display: flex;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 10px;
+      margin-top: 14px;
       flex-wrap: wrap;
     }
 
     .btn {
-      padding: 10px 24px;
+      padding: 10px 20px;
       border-radius: 8px;
       border: none;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       transition: opacity 0.2s, transform 0.1s;
     }
-
     .btn:active { transform: scale(0.97); }
 
-    .btn-primary {
-      background: #f0c040;
-      color: #1a1a2e;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid #f0c040;
-      color: #f0c040;
-    }
-
+    .btn-primary { background: #f0c040; color: #1a1a2e; }
+    .btn-secondary { background: transparent; border: 1px solid #f0c040; color: #f0c040; }
     .btn-check {
+      width: 100%;
       background: #20c060;
       color: #fff;
-      padding: 12px 32px;
-      font-size: 1rem;
+      padding: 14px;
+      font-size: 1.05rem;
+      border-radius: 10px;
+      margin-bottom: 18px;
     }
-
     .btn:hover { opacity: 0.85; }
 
-    /* Resultados */
+    /* Results */
     #results { display: none; }
 
     .result-summary {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
     }
 
     .stat-box {
-      flex: 1;
-      min-width: 120px;
       background: #0f3460;
       border-radius: 10px;
-      padding: 14px;
+      padding: 12px 8px;
       text-align: center;
     }
+    .stat-box .stat-num { font-size: 1.7rem; font-weight: bold; color: #f0c040; }
+    .stat-box .stat-label { font-size: 0.7rem; color: #aaa; margin-top: 2px; }
 
-    .stat-box .stat-num {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #f0c040;
-    }
-
-    .stat-box .stat-label {
-      font-size: 0.78rem;
-      color: #aaa;
-      margin-top: 4px;
-    }
-
-    .result-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.92rem;
-    }
-
+    .result-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
     .result-table th {
       background: #0f3460;
       color: #f0c040;
-      padding: 10px 12px;
+      padding: 9px 10px;
       text-align: left;
       font-weight: 600;
     }
-
-    .result-table td {
-      padding: 9px 12px;
-      border-bottom: 1px solid #0f3460;
-    }
-
+    .result-table td { padding: 8px 10px; border-bottom: 1px solid #0f3460; vertical-align: middle; }
     .result-table tr:last-child td { border-bottom: none; }
     .result-table tr:hover td { background: #1a2a50; }
 
     .aciertos-badge {
       display: inline-block;
-      padding: 2px 10px;
+      padding: 3px 10px;
       border-radius: 12px;
       font-weight: bold;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
+      white-space: nowrap;
     }
-
     .ac-3 { background: #805010; color: #ffd080; }
     .ac-4 { background: #205080; color: #80d0ff; }
     .ac-5 { background: #104020; color: #80ff80; }
@@ -257,40 +267,50 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
-      height: 30px;
+      width: 28px; height: 28px;
       border-radius: 50%;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: bold;
       margin: 1px;
     }
-
-    .num-hit { background: #f0c040; color: #1a1a2e; }
-    .num-miss { background: #1a2a50; color: #8090b0; border: 1px solid #2a3a60; }
+    .num-hit  { background: #f0c040; color: #1a1a2e; }
+    .num-miss { background: #1a2a50; color: #6070a0; border: 1px solid #2a3a60; }
     .num-comp { background: #8040c0; color: #fff; }
 
     .error-msg {
       background: #3a0a0a;
       border: 1px solid #c04040;
-      color: #ff8080;
+      color: #ff8888;
       border-radius: 8px;
-      padding: 12px 16px;
-      margin-top: 12px;
-      font-size: 0.9rem;
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 0.85rem;
       display: none;
     }
 
     .no-results {
       text-align: center;
-      color: #aaa;
-      padding: 24px;
-      font-size: 0.95rem;
+      color: #888;
+      padding: 20px;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 600px) {
+    .warning-msg {
+      background: #3a2a00;
+      border: 1px solid #c08000;
+      color: #ffc060;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
       h1 { font-size: 1.5rem; }
-      .ball-input { width: 44px; height: 44px; font-size: 1rem; }
-      .bet-num-input { width: 38px; height: 38px; font-size: 0.9rem; }
+      .ball-display { width: 40px; height: 40px; font-size: 0.95rem; }
+      .bet-num-input { width: 36px; height: 36px; font-size: 0.85rem; }
+      .result-summary { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -299,295 +319,368 @@
   <h1>La Primitiva</h1>
   <p class="subtitle">Comprobador de apuestas</p>
 
-  <!-- Resultado del sorteo -->
+  <!-- Sorteo -->
   <div class="card">
-    <h2>Resultado del sorteo</h2>
-    <div class="sorteo-row">
-      <div class="sorteo-group">
-        <label>N1</label>
-        <input class="ball-input" id="s1" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group">
-        <label>N2</label>
-        <input class="ball-input" id="s2" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group">
-        <label>N3</label>
-        <input class="ball-input" id="s3" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group">
-        <label>N4</label>
-        <input class="ball-input" id="s4" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group">
-        <label>N5</label>
-        <input class="ball-input" id="s5" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group">
-        <label>N6</label>
-        <input class="ball-input" id="s6" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group" style="margin-left:12px">
-        <label>Compl.</label>
-        <input class="ball-input comp" id="sc" type="number" min="1" max="49" placeholder="—" />
-      </div>
-      <div class="sorteo-group">
-        <label>Reint.</label>
-        <input class="ball-input rein" id="sr" type="number" min="0" max="9" placeholder="—" />
+    <div class="card-header">
+      <h2>Ultimo sorteo</h2>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="sorteo-status">
+          <span class="status-dot loading" id="status-dot"></span>
+          <span id="status-text">Cargando...</span>
+        </div>
+        <button class="btn-refresh" onclick="fetchSorteo()">↻ Actualizar</button>
       </div>
     </div>
-    <div class="error-msg" id="sorteo-error"></div>
+
+    <div class="sorteo-display" id="sorteo-display">
+      <!-- filled by JS -->
+    </div>
+    <div class="sorteo-date" id="sorteo-date"></div>
+    <div class="warning-msg" id="sorteo-warn"></div>
   </div>
 
   <!-- Apuestas -->
   <div class="card">
-    <h2>Mis apuestas</h2>
+    <div class="card-header">
+      <h2>Mis apuestas</h2>
+      <span style="font-size:0.75rem;color:#888" id="save-indicator"></span>
+    </div>
     <div class="bet-list" id="bet-list"></div>
     <div class="btn-actions">
       <button class="btn btn-primary" onclick="addBet()">+ Añadir apuesta</button>
-      <button class="btn btn-secondary" onclick="clearBets()">Limpiar todo</button>
+      <button class="btn btn-secondary" onclick="clearBets()">Borrar todas</button>
     </div>
     <div class="error-msg" id="bet-error"></div>
   </div>
 
-  <!-- Botón comprobar -->
-  <div style="text-align:center; margin-bottom: 24px;">
-    <button class="btn btn-check" onclick="checkBets()">Comprobar apuestas</button>
-  </div>
+  <!-- Comprobar -->
+  <button class="btn btn-check" onclick="checkBets()">Comprobar apuestas</button>
 
   <!-- Resultados -->
   <div class="card" id="results">
-    <h2>Resultados</h2>
+    <div class="card-header">
+      <h2>Resultados</h2>
+    </div>
     <div class="result-summary" id="result-summary"></div>
     <div id="result-content"></div>
   </div>
 </div>
 
 <script>
-  let betCount = 0;
+// ─── State ────────────────────────────────────────────────────────────────────
+let sorteo = null;   // { nums:[], comp, rein, fecha }
+let saveTimer = null;
 
-  function addBet(numbers) {
-    betCount++;
-    const list = document.getElementById('bet-list');
-    const row = document.createElement('div');
-    row.className = 'bet-row';
-    row.dataset.id = betCount;
+// ─── Sorteo fetch ─────────────────────────────────────────────────────────────
+const API_URL  = 'https://www.loteriasyapuestas.es/servicios/buscadorSorteos?game_id=LAPR&celebrados=true&num=1';
+const PROXY    = 'https://api.allorigins.win/get?url=';
 
-    const idx = document.createElement('span');
-    idx.className = 'bet-index';
-    idx.textContent = `#${betCount}`;
+async function fetchSorteo() {
+  setStatus('loading', 'Cargando...');
+  renderSorteo(null);
+  try {
+    const url = PROXY + encodeURIComponent(API_URL);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const outer = await res.json();
+    const data = JSON.parse(outer.contents);
+    if (!data || !data.length) throw new Error('Sin datos');
+    const d = data[0];
+    // combinacion puede ser "3-12-16-23-28-36" o venir en numero1…numero6
+    let nums;
+    if (d.combinacion) {
+      nums = d.combinacion.split('-').map(Number);
+    } else {
+      nums = [d.numero1,d.numero2,d.numero3,d.numero4,d.numero5,d.numero6].map(Number);
+    }
+    sorteo = {
+      nums,
+      comp: Number(d.complementario),
+      rein: Number(d.reintegro),
+      fecha: formatFecha(d.fecha_sorteo || d.fechaSorteo || '')
+    };
+    renderSorteo(sorteo);
+    setStatus('ok', 'Actualizado');
+  } catch (e) {
+    setStatus('error', 'No se pudo obtener');
+    showWarn('No se pudo obtener el sorteo automáticamente. Puedes introducir los números manualmente pulsando sobre las bolas.');
+    renderSorteo(null, true);
+  }
+}
 
-    const nums = document.createElement('div');
-    nums.className = 'bet-numbers';
+function formatFecha(raw) {
+  // raw like "20240101" or ISO string
+  if (!raw) return '';
+  const s = String(raw).replace(/\D/g,'');
+  if (s.length === 8) {
+    return `${s.slice(6,8)}/${s.slice(4,6)}/${s.slice(0,4)}`;
+  }
+  return raw;
+}
 
-    for (let i = 0; i < 6; i++) {
+function setStatus(state, text) {
+  const dot  = document.getElementById('status-dot');
+  const span = document.getElementById('status-text');
+  dot.className = 'status-dot ' + state;
+  span.textContent = text;
+}
+
+function showWarn(msg) {
+  const el = document.getElementById('sorteo-warn');
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+}
+
+// ─── Sorteo render ────────────────────────────────────────────────────────────
+function renderSorteo(s, editable) {
+  const container = document.getElementById('sorteo-display');
+  const dateEl    = document.getElementById('sorteo-date');
+  container.innerHTML = '';
+
+  const positions = [
+    { key:'n1', label:'N1',    cls:'',     idx:0 },
+    { key:'n2', label:'N2',    cls:'',     idx:1 },
+    { key:'n3', label:'N3',    cls:'',     idx:2 },
+    { key:'n4', label:'N4',    cls:'',     idx:3 },
+    { key:'n5', label:'N5',    cls:'',     idx:4 },
+    { key:'n6', label:'N6',    cls:'',     idx:5 },
+    { key:'c',  label:'Comp.', cls:'comp', idx:-1 },
+    { key:'r',  label:'Rein.', cls:'rein', idx:-2 },
+  ];
+
+  positions.forEach(p => {
+    let value = '';
+    if (s) {
+      value = p.idx >= 0 ? s.nums[p.idx] : (p.key === 'c' ? s.comp : s.rein);
+    }
+    const group = document.createElement('div');
+    group.className = 'sorteo-group';
+
+    const lbl = document.createElement('label');
+    lbl.textContent = p.label;
+    group.appendChild(lbl);
+
+    if (editable || (!s && editable !== false)) {
+      // input editable
       const inp = document.createElement('input');
       inp.type = 'number';
-      inp.min = 1;
-      inp.max = 49;
-      inp.className = 'bet-num-input';
+      inp.className = 'bet-num-input ball-display ' + p.cls;
+      inp.style.borderRadius = '50%';
+      inp.min = p.key === 'r' ? 0 : 1;
+      inp.max = p.key === 'r' ? 9 : 49;
       inp.placeholder = '—';
-      if (numbers && numbers[i] !== undefined) inp.value = numbers[i];
-      inp.addEventListener('input', () => limitInput(inp, 1, 49));
-      nums.appendChild(inp);
-    }
-
-    const btnDel = document.createElement('button');
-    btnDel.className = 'btn-remove';
-    btnDel.textContent = 'Eliminar';
-    btnDel.onclick = () => { row.remove(); renumberBets(); };
-
-    row.appendChild(idx);
-    row.appendChild(nums);
-    row.appendChild(btnDel);
-    list.appendChild(row);
-  }
-
-  function renumberBets() {
-    document.querySelectorAll('.bet-row').forEach((row, i) => {
-      row.querySelector('.bet-index').textContent = `#${i + 1}`;
-    });
-  }
-
-  function clearBets() {
-    document.getElementById('bet-list').innerHTML = '';
-    betCount = 0;
-    document.getElementById('results').style.display = 'none';
-    showError('bet-error', '');
-  }
-
-  function limitInput(inp, min, max) {
-    const v = parseInt(inp.value);
-    if (!isNaN(v)) {
-      if (v < min) inp.value = min;
-      if (v > max) inp.value = max;
-    }
-  }
-
-  ['s1','s2','s3','s4','s5','s6','sc'].forEach(id => {
-    document.getElementById(id).addEventListener('input', function() { limitInput(this, 1, 49); });
-  });
-  document.getElementById('sr').addEventListener('input', function() { limitInput(this, 0, 9); });
-
-  function showError(id, msg) {
-    const el = document.getElementById(id);
-    el.textContent = msg;
-    el.style.display = msg ? 'block' : 'none';
-  }
-
-  function getSorteo() {
-    const ids = ['s1','s2','s3','s4','s5','s6'];
-    const nums = ids.map(id => parseInt(document.getElementById(id).value));
-    const comp = parseInt(document.getElementById('sc').value);
-    const rein = parseInt(document.getElementById('sr').value);
-    return { nums, comp, rein };
-  }
-
-  function validateSorteo(sorteo) {
-    const { nums, comp, rein } = sorteo;
-    if (nums.some(isNaN) || isNaN(comp) || isNaN(rein))
-      return 'Debes introducir los 6 números, el complementario y el reintegro del sorteo.';
-    if (nums.some(n => n < 1 || n > 49) || comp < 1 || comp > 49)
-      return 'Los números del sorteo deben estar entre 1 y 49.';
-    if (rein < 0 || rein > 9)
-      return 'El reintegro debe estar entre 0 y 9.';
-    const all = [...nums, comp];
-    if (new Set(all).size !== all.length)
-      return 'Los números del sorteo (incluyendo el complementario) deben ser distintos.';
-    return null;
-  }
-
-  function getBets() {
-    const rows = document.querySelectorAll('.bet-row');
-    return Array.from(rows).map((row, i) => {
-      const inputs = row.querySelectorAll('.bet-num-input');
-      const nums = Array.from(inputs).map(inp => parseInt(inp.value));
-      return { index: i + 1, nums };
-    });
-  }
-
-  function validateBets(bets) {
-    for (const bet of bets) {
-      if (bet.nums.some(isNaN))
-        return `La apuesta #${bet.index} tiene números incompletos.`;
-      if (bet.nums.some(n => n < 1 || n > 49))
-        return `La apuesta #${bet.index} tiene números fuera de rango (1-49).`;
-      if (new Set(bet.nums).size !== 6)
-        return `La apuesta #${bet.index} tiene números repetidos.`;
-    }
-    return null;
-  }
-
-  function checkBets() {
-    showError('sorteo-error', '');
-    showError('bet-error', '');
-
-    const sorteo = getSorteo();
-    const sorteoErr = validateSorteo(sorteo);
-    if (sorteoErr) { showError('sorteo-error', sorteoErr); return; }
-
-    const bets = getBets();
-    if (bets.length === 0) { showError('bet-error', 'Añade al menos una apuesta.'); return; }
-
-    const betErr = validateBets(bets);
-    if (betErr) { showError('bet-error', betErr); return; }
-
-    const sorteoSet = new Set(sorteo.nums);
-    const results = bets.map(bet => {
-      const hits = bet.nums.filter(n => sorteoSet.has(n));
-      const hasComp = bet.nums.includes(sorteo.comp);
-      return { ...bet, hits: hits.length, hasComp };
-    });
-
-    renderResults(results, sorteo);
-  }
-
-  function renderResults(results, sorteo) {
-    const withPrize = results.filter(r => r.hits >= 3);
-    const by = { 3: 0, 4: 0, 5: 0, 6: 0 };
-    withPrize.forEach(r => { by[r.hits] = (by[r.hits] || 0) + 1; });
-
-    // Summary
-    const summary = document.getElementById('result-summary');
-    summary.innerHTML = `
-      <div class="stat-box">
-        <div class="stat-num">${results.length}</div>
-        <div class="stat-label">Apuestas totales</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">${withPrize.length}</div>
-        <div class="stat-label">Con 3+ aciertos</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">${by[3] || 0}</div>
-        <div class="stat-label">3 aciertos</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">${by[4] || 0}</div>
-        <div class="stat-label">4 aciertos</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">${by[5] || 0}</div>
-        <div class="stat-label">5 aciertos</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">${by[6] || 0}</div>
-        <div class="stat-label">6 aciertos</div>
-      </div>
-    `;
-
-    // Table
-    const content = document.getElementById('result-content');
-
-    if (withPrize.length === 0) {
-      content.innerHTML = '<div class="no-results">Ninguna apuesta tiene 3 o más aciertos en este sorteo.</div>';
+      inp.id = 'se_' + p.key;
+      if (value) inp.value = value;
+      inp.addEventListener('change', commitManualSorteo);
+      group.appendChild(inp);
     } else {
-      const sorteoSet = new Set(sorteo.nums);
-      let rows = withPrize
-        .sort((a, b) => b.hits - a.hits)
-        .map(r => {
-          const ballsHtml = r.nums.map(n => {
-            let cls = 'num-miss';
-            if (sorteoSet.has(n)) cls = 'num-hit';
-            else if (n === sorteo.comp) cls = 'num-comp';
-            return `<span class="num-ball ${cls}">${n}</span>`;
-          }).join('');
-
-          let badgeCls = 'ac-3';
-          if (r.hits === 4) badgeCls = 'ac-4';
-          if (r.hits === 5) badgeCls = 'ac-5';
-          if (r.hits === 6) badgeCls = 'ac-6';
-
-          const compNote = r.hasComp ? ' + C' : '';
-          return `
-            <tr>
-              <td>#${r.index}</td>
-              <td>${ballsHtml}</td>
-              <td><span class="aciertos-badge ${badgeCls}">${r.hits} aciertos${compNote}</span></td>
-            </tr>`;
-        }).join('');
-
-      content.innerHTML = `
-        <table class="result-table">
-          <thead>
-            <tr>
-              <th>Apuesta</th>
-              <th>Números</th>
-              <th>Categoría</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>`;
+      const ball = document.createElement('div');
+      ball.className = 'ball-display ' + p.cls + (value ? '' : ' empty');
+      ball.textContent = value || '—';
+      ball.title = 'Pulsa para editar';
+      ball.style.cursor = 'pointer';
+      ball.addEventListener('click', () => renderSorteo(s, true));
+      group.appendChild(ball);
     }
 
-    document.getElementById('results').style.display = 'block';
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    container.appendChild(group);
+  });
+
+  dateEl.textContent = s && s.fecha ? `Sorteo del ${s.fecha}` : '';
+}
+
+function commitManualSorteo() {
+  const get = id => parseInt(document.getElementById('se_' + id)?.value);
+  const nums = [get('n1'), get('n2'), get('n3'), get('n4'), get('n5'), get('n6')];
+  const comp = get('c');
+  const rein = get('r');
+  if (nums.every(n => !isNaN(n)) && !isNaN(comp) && !isNaN(rein)) {
+    sorteo = { nums, comp, rein, fecha: 'manual' };
+    setStatus('ok', 'Introducido manualmente');
+    showWarn('');
+    renderSorteo(sorteo);
+  }
+}
+
+// ─── Bets ─────────────────────────────────────────────────────────────────────
+function addBet(numbers) {
+  const list = document.getElementById('bet-list');
+  const idx  = list.children.length + 1;
+
+  const row = document.createElement('div');
+  row.className = 'bet-row';
+
+  const label = document.createElement('span');
+  label.className = 'bet-index';
+  label.textContent = `#${idx}`;
+
+  const numsDiv = document.createElement('div');
+  numsDiv.className = 'bet-numbers';
+
+  for (let i = 0; i < 6; i++) {
+    const inp = document.createElement('input');
+    inp.type = 'number';
+    inp.min  = 1;
+    inp.max  = 49;
+    inp.className   = 'bet-num-input';
+    inp.placeholder = '—';
+    if (numbers?.[i] != null) inp.value = numbers[i];
+    inp.addEventListener('input', () => { clampInput(inp, 1, 49); scheduleSave(); });
+    numsDiv.appendChild(inp);
   }
 
-  // Iniciar con 3 apuestas vacías
-  addBet();
-  addBet();
-  addBet();
+  const btnDel = document.createElement('button');
+  btnDel.className = 'btn-remove';
+  btnDel.textContent = '✕';
+  btnDel.title = 'Eliminar apuesta';
+  btnDel.onclick = () => { row.remove(); renumberBets(); scheduleSave(); };
+
+  row.appendChild(label);
+  row.appendChild(numsDiv);
+  row.appendChild(btnDel);
+  list.appendChild(row);
+  scheduleSave();
+}
+
+function renumberBets() {
+  document.querySelectorAll('.bet-row').forEach((r, i) => {
+    r.querySelector('.bet-index').textContent = `#${i + 1}`;
+  });
+}
+
+function clearBets() {
+  if (!confirm('¿Borrar todas las apuestas guardadas?')) return;
+  document.getElementById('bet-list').innerHTML = '';
+  document.getElementById('results').style.display = 'none';
+  scheduleSave();
+}
+
+function clampInput(inp, min, max) {
+  const v = parseInt(inp.value);
+  if (!isNaN(v)) {
+    if (v < min) inp.value = min;
+    if (v > max) inp.value = max;
+  }
+}
+
+// ─── Persistence ──────────────────────────────────────────────────────────────
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveBets, 600);
+}
+
+function saveBets() {
+  const rows = document.querySelectorAll('.bet-row');
+  const data = Array.from(rows).map(row => {
+    return Array.from(row.querySelectorAll('.bet-num-input')).map(inp => inp.value ? parseInt(inp.value) : null);
+  });
+  localStorage.setItem('primitiva_bets', JSON.stringify(data));
+  const ind = document.getElementById('save-indicator');
+  ind.textContent = 'Guardado ✓';
+  setTimeout(() => { ind.textContent = ''; }, 2000);
+}
+
+function loadBets() {
+  try {
+    const raw = localStorage.getItem('primitiva_bets');
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    if (!data.length) return false;
+    data.forEach(nums => addBet(nums));
+    return true;
+  } catch { return false; }
+}
+
+// ─── Check ────────────────────────────────────────────────────────────────────
+function checkBets() {
+  document.getElementById('bet-error').style.display = 'none';
+
+  if (!sorteo || !sorteo.nums || sorteo.nums.some(isNaN)) {
+    showBetError('El sorteo no está disponible todavía. Pulsa "Actualizar" o introduce los números manualmente.');
+    return;
+  }
+
+  const rows = document.querySelectorAll('.bet-row');
+  if (!rows.length) { showBetError('Añade al menos una apuesta.'); return; }
+
+  const bets = [];
+  for (let i = 0; i < rows.length; i++) {
+    const inputs = rows[i].querySelectorAll('.bet-num-input');
+    const nums   = Array.from(inputs).map(inp => parseInt(inp.value));
+    if (nums.some(isNaN)) { showBetError(`La apuesta #${i+1} está incompleta.`); return; }
+    if (nums.some(n => n < 1 || n > 49)) { showBetError(`La apuesta #${i+1} tiene números fuera de rango.`); return; }
+    if (new Set(nums).size !== 6) { showBetError(`La apuesta #${i+1} tiene números repetidos.`); return; }
+    bets.push({ index: i+1, nums });
+  }
+
+  const set = new Set(sorteo.nums);
+  const results = bets.map(b => ({
+    ...b,
+    hits:    b.nums.filter(n => set.has(n)).length,
+    hasComp: b.nums.includes(sorteo.comp),
+  }));
+
+  renderResults(results, set);
+}
+
+function showBetError(msg) {
+  const el = document.getElementById('bet-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function renderResults(results, set) {
+  const withPrize = results.filter(r => r.hits >= 3).sort((a,b) => b.hits - a.hits);
+  const by = {};
+  withPrize.forEach(r => { by[r.hits] = (by[r.hits]||0) + 1; });
+
+  document.getElementById('result-summary').innerHTML = `
+    <div class="stat-box"><div class="stat-num">${results.length}</div><div class="stat-label">Apuestas</div></div>
+    <div class="stat-box"><div class="stat-num">${withPrize.length}</div><div class="stat-label">Con 3+ aciertos</div></div>
+    <div class="stat-box"><div class="stat-num">${by[3]||0}</div><div class="stat-label">3 aciertos</div></div>
+    <div class="stat-box"><div class="stat-num">${by[4]||0}</div><div class="stat-label">4 aciertos</div></div>
+    <div class="stat-box"><div class="stat-num">${by[5]||0}</div><div class="stat-label">5 aciertos</div></div>
+    <div class="stat-box"><div class="stat-num">${by[6]||0}</div><div class="stat-label">6 aciertos</div></div>
+  `;
+
+  const content = document.getElementById('result-content');
+  if (!withPrize.length) {
+    content.innerHTML = '<div class="no-results">Ninguna apuesta tiene 3 o más aciertos en este sorteo.</div>';
+  } else {
+    const rows = withPrize.map(r => {
+      const balls = r.nums.map(n => {
+        const cls = set.has(n) ? 'num-hit' : (n === sorteo.comp ? 'num-comp' : 'num-miss');
+        return `<span class="num-ball ${cls}">${n}</span>`;
+      }).join('');
+      const cls  = ['','','','ac-3','ac-4','ac-5','ac-6'][r.hits] || 'ac-6';
+      const comp = r.hasComp && r.hits < 6 ? ' +C' : '';
+      return `<tr>
+        <td>#${r.index}</td>
+        <td>${balls}</td>
+        <td><span class="aciertos-badge ${cls}">${r.hits} ac.${comp}</span></td>
+      </tr>`;
+    }).join('');
+
+    content.innerHTML = `
+      <table class="result-table">
+        <thead><tr><th>Ap.</th><th>Números</th><th>Categoría</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  const el = document.getElementById('results');
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+renderSorteo(null);
+fetchSorteo();
+
+if (!loadBets()) {
+  // primera vez: 3 apuestas vacías
+  addBet(); addBet(); addBet();
+}
 </script>
 </body>
 </html>
