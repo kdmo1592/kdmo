@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comprobador de Primitiva</title>
+  <title>LotoPey</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -316,8 +316,8 @@
 </head>
 <body>
 <div class="container">
-  <h1>La Primitiva</h1>
-  <p class="subtitle">Comprobador de apuestas</p>
+  <h1>LotoPey</h1>
+  <p class="subtitle">Comprobador de La Primitiva</p>
 
   <!-- Sorteo -->
   <div class="card">
@@ -633,6 +633,7 @@ function renderResults(results, set) {
   const withPrize = results.filter(r => r.hits >= 3).sort((a,b) => b.hits - a.hits);
   const by = {};
   withPrize.forEach(r => { by[r.hits] = (by[r.hits]||0) + 1; });
+  const reintWin = sorteo.rein === FIXED_REINTEGRO;
 
   document.getElementById('result-summary').innerHTML = `
     <div class="stat-box"><div class="stat-num">${results.length}</div><div class="stat-label">Apuestas</div></div>
@@ -643,9 +644,17 @@ function renderResults(results, set) {
     <div class="stat-box"><div class="stat-num">${by[6]||0}</div><div class="stat-label">6 aciertos</div></div>
   `;
 
+  const reintBanner = reintWin
+    ? `<div style="background:#0a3020;border:1px solid #20c060;color:#60ff90;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-weight:600;">
+        Reintegro ${FIXED_REINTEGRO} — Las ${results.length} apuestas recuperan la inversión
+       </div>`
+    : `<div style="background:#1a1a2e;border:1px solid #2a3060;color:#666;border-radius:8px;padding:8px 14px;margin-bottom:14px;font-size:0.82rem;">
+        Reintegro del sorteo: ${sorteo.rein} &nbsp;·&nbsp; Vuestro reintegro: ${FIXED_REINTEGRO} &nbsp;·&nbsp; Sin reintegro
+       </div>`;
+
   const content = document.getElementById('result-content');
   if (!withPrize.length) {
-    content.innerHTML = '<div class="no-results">Ninguna apuesta tiene 3 o más aciertos en este sorteo.</div>';
+    content.innerHTML = reintBanner + '<div class="no-results">Ninguna apuesta tiene 3 o más aciertos en este sorteo.</div>';
   } else {
     const rows = withPrize.map(r => {
       const balls = r.nums.map(n => {
@@ -661,7 +670,7 @@ function renderResults(results, set) {
       </tr>`;
     }).join('');
 
-    content.innerHTML = `
+    content.innerHTML = reintBanner + `
       <table class="result-table">
         <thead><tr><th>Ap.</th><th>Números</th><th>Categoría</th></tr></thead>
         <tbody>${rows}</tbody>
@@ -672,6 +681,9 @@ function renderResults(results, set) {
   el.style.display = 'block';
   el.scrollIntoView({ behavior: 'smooth' });
 }
+
+// ─── Configuración fija ───────────────────────────────────────────────────────
+const FIXED_REINTEGRO = 8;
 
 // ─── Apuestas fijas ───────────────────────────────────────────────────────────
 const DEFAULT_BETS = [
