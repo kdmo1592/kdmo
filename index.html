@@ -141,11 +141,11 @@
     .bet-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: #0f1e3a;
       border: 1px solid #0f3460;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 8px;
+      padding: 7px 10px;
     }
 
     .bet-index {
@@ -348,7 +348,7 @@
     <div class="bet-list" id="bet-list"></div>
     <div class="btn-actions">
       <button class="btn btn-primary" onclick="addBet()">+ Añadir apuesta</button>
-      <button class="btn btn-secondary" onclick="clearBets()">Borrar todas</button>
+      <button class="btn btn-secondary" onclick="restoreDefaultBets()">↺ Restaurar fijas</button>
     </div>
     <div class="error-msg" id="bet-error"></div>
   </div>
@@ -673,13 +673,73 @@ function renderResults(results, set) {
   el.scrollIntoView({ behavior: 'smooth' });
 }
 
+// ─── Apuestas fijas ───────────────────────────────────────────────────────────
+const DEFAULT_BETS = [
+  [5,7,8,11,14,17],
+  [2,3,13,14,37,38],
+  [19,39,40,41,27,28],
+  [19,39,21,22,40,31],
+  [19,39,23,24,27,31],
+  [1,5,8,9,37,38],
+  [33,5,9,14,38,17],
+  [19,39,21,22,23,24],
+  [19,39,23,24,40,42],
+  [22,24,40,28,43,31],
+  [2,5,34,36,37,17],
+  [19,39,40,27,43,32],
+  [2,3,7,8,9,36],
+  [21,22,41,27,43,31],
+  [19,39,42,43,31,32],
+  [19,39,23,24,41,43],
+  [1,33,5,36,11,13],
+  [2,3,5,9,13,18],
+  [22,24,41,27,42,32],
+  [19,39,21,22,27,42],
+  [19,39,21,22,41,32],
+  [34,9,11,13,14,17],
+  [19,39,23,24,28,32],
+  [19,39,21,22,28,43],
+  [1,3,34,8,36,14],
+  [34,7,9,36,12,13],
+  [5,34,11,12,14,18],
+  [3,36,11,38,17,18],
+  [3,33,34,8,38,18],
+  [21,23,40,41,42,43],
+  [23,24,27,28,42,43],
+  [1,2,33,34,7,38],
+  [34,8,11,13,37,18],
+  [21,24,40,27,42,31],
+  [8,36,12,14,38,18],
+  [33,7,36,14,37,18],
+  [21,22,40,28,42,32],
+  [3,33,9,11,12,37],
+  [2,33,8,12,13,17],
+  [23,24,40,41,31,32],
+  [21,24,41,28,43,32],
+  [1,7,9,13,17,18],
+  [19,39,41,28,42,31],
+  [2,34,7,11,12,38],
+  [3,5,7,12,13,38],
+  [22,23,40,41,27,28],
+  [1,2,11,12,14,18],
+  [22,23,42,43,31,32],
+  [1,3,7,12,37,17],
+  [21,23,27,28,31,32],
+];
+
+function restoreDefaultBets() {
+  document.getElementById('bet-list').innerHTML = '';
+  document.getElementById('results').style.display = 'none';
+  DEFAULT_BETS.forEach(nums => addBet(nums));
+  saveBets();
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 renderSorteo(null);
 fetchSorteo();
 
 if (!loadBets()) {
-  // primera vez: 3 apuestas vacías
-  addBet(); addBet(); addBet();
+  DEFAULT_BETS.forEach(nums => addBet(nums));
 }
 </script>
 </body>
